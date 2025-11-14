@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "username": "eshmat",
+        "age": 22,
+        "address": "Toshkent",
+        "email": "eshmat1@mail.com",
+        "image": "https://randomuser.me/api/portraits/men/1.jpg"
+      },
+      {
+        "id": 2,
+        "username": "eshmatchaaaaaaa",
+        "age": 87,
+        "address": "Toshkent",
+        "email": "eshmatcha1@mail.com",
+        "image": "https://randomuser.me/api/portraits/men/1.jpg"
+      },
+      {
+        "id": 3,
+        "username": "gishmat",
+        "age": 28,
+        "address": "Buxoro",
+        "email": "gishmat3@mail.com",
+        "image": "https://randomuser.me/api/portraits/men/3.jpg"
+      }
+]
