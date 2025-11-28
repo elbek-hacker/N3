@@ -7,7 +7,7 @@ class controllerMovie{
         try {
             const { title } = req.body;
             const existsMovie = await Movie.findOne({title});
-            if ( !existsMovie ){
+            if ( existsMovie ){
                 return new ApiError('This is already exists', res, 409);
             };
             const newMovie = await Movie.create(req.body);
