@@ -8,7 +8,7 @@ class controllerMovie{
             const { title } = req.body;
             const existsMovie = await Movie.findOne({title});
             if ( existsMovie ){
-                return new ApiError('This is already exists', res, 409);
+                throw new ApiError('This is already exists', 409);
             };
             const newMovie = await Movie.create(req.body);
             return successRes(res, newMovie, 200);
@@ -29,7 +29,7 @@ class controllerMovie{
             const id = String(req.params.id);
             const movie = await Movie.findById(id);
             if(!movie){
-                return new ApiError("This movie doesn't exist!", res, 404)
+                throw new ApiError("This movie doesn't exist!", 404)
             }
             return successRes(res, movie)
         } catch (error) {
@@ -41,7 +41,7 @@ class controllerMovie{
             const id = String(req.params.id);
             const movie = await Movie.findById(id);
             if(!movie){
-                return new ApiError("This movie doesn't exist!", res, 404)
+                throw new ApiError("This movie doesn't exist!", 404)
             };
             const updatedMovie = await Movie.findByIdAndUpdate(id, req.body, {new: true});
             return successRes(res, updatedMovie, 201);
@@ -54,7 +54,7 @@ class controllerMovie{
             const id = String(req.params.id);
             const movie = await Movie.findById(id);
             if(!movie){
-                return new ApiError("This movie doesn't exist!", res, 404)
+                throw new ApiError("This movie doesn't exist!", 404)
             };
             await Movie.findByIdAndDelete(id);
             return successRes(res)
