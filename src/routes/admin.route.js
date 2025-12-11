@@ -3,18 +3,18 @@ import { validator } from '../middlewares/validation-handle.js'
 import controller from '../controllers/admin.controller.js';
 import adminValid from '../validation/user.validation.js'
 import authController from '../controllers/auth.controller.js'
-import { get } from "mongoose";
 
 const router = Router();
 
 router
     .post('/', validator(adminValid.create), controller.create)
     .post('/signin', validator(adminValid.signin), authController.signIn)
+    .post('/token', authController.getAccessToken)
+    .post('/signout', authController.signOut)
     .get('/', controller.findAll)
     .get('/:id', controller.findOne)
     .patch('/:id', validator(adminValid.update), controller.update)
     .delete('/:id', controller.remove)
     
-
 
 export default router;

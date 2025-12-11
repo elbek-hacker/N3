@@ -10,6 +10,7 @@ class CategoryController extends BaseController{
         const category = await Category.create(req.body);
         return successRes(res, category, 201);
     })
+    
     update = catchAsync( async ( req, res )=>{
         const id = req.params?.id;
         await this._getById(id);

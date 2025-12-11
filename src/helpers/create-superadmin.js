@@ -10,6 +10,7 @@ export async function createSuperAdmin(){
             const superAdmin = await User.create({
                 role: Roles.SUPERADMIN,
                 phoneNumber: envConfig.SUPERADMIN.PHONE,
+                email: envConfig.SUPERADMIN.EMAIL,
                 hashedPassword: await crypto.decode(envConfig.SUPERADMIN.PASSWORD)
             });
             console.log('Super admin created successfully', superAdmin);

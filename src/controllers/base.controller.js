@@ -19,22 +19,26 @@ export class BaseController{
         const data = await this.model.find().populate(this.relation);
         return successRes(res, data);  
     });
+    
     findOne = catchAsync(async (req, res) => {
         const data = await this._getById(req.params?.id);
         return successRes(res, data);
     });
+
     update = catchAsync( async (req, res) => {
         const id = req.params?.id;
         await this._getById(id);
         const updatedData = await this.model.findByIdAndUpdate(id, req.body, {new: true});
         return successRes(res, updatedData);
     });
+
     remove = catchAsync (async (req, res) => {
         const id = req.params?.id;
         await this._getById(id);
         await this.model.findByIdAndDelete(id);
         return successRes(res, {});
     });
+
     async _getById(id){
         if( !isValidObjectId(id)){
             throw new ApiError('Invalid Object ID', 400);
@@ -45,6 +49,7 @@ export class BaseController{
         };
         return data;
     }
+
     async _isExist(property, message){
         const existsData = await this.model.findOne(property);
         if( existsData ){

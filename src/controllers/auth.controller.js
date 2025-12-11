@@ -22,6 +22,34 @@ class AuthController{
             refreshToken
         });
     })
+
+    getAccessToken = catchAsync(async (req, res)=>{
+        const refreshToken = req.cookies?.refreshToken;
+        if( !refreshToken ){
+            throw new ApiError("please sign in first", 401);
+        }
+        const data = token.verifyRefresh(refreshToken);
+        if(!data) {
+            throw new ApiError('something went wrong. please sign in again!', 401);
+        }
+        const user = await User.findById(data?.id);
+        if(!user){
+            throw new ApiError('your data is not found', 400);
+        }
+        const payload = { id: user._id, role: user.role, isActive: user.isActive };
+        const accessToken = token.getAccess(payload);
+        return successRes(res, {
+            token: accessToken
+        });
+    })
+
+    signOut = catchAsync (async ( req, res )=>{
+        const refreshToken = req.cookies?.refreshToken;
+        if ( refreshToken){
+            res.clearCookie('refreshToken');
+        }
+        return successRes(res, {});
+    })
 }
 
 export default new AuthController();

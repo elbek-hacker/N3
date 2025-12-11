@@ -19,6 +19,16 @@ class Token {
         });
         return refreshToken;
     }
+
+    verifyAccess(token){
+        const isCorrect = jwt.verify(token, envConfig.TOKEN.ACCESS_KEY);
+        return isCorrect;
+    }
+
+    verifyRefresh(token){
+        const isCorrect = jwt.verify(token, envConfig.TOKEN.REFRESH_KEY);
+        return isCorrect;
+    }
 }
 
 export default new Token();

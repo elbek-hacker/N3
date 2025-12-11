@@ -6,7 +6,6 @@ import { BaseController } from "./base.controller.js";
 import Admin from '../schemas/user.schema.js'
 import { ApiError } from "../utils/custom-error.js";
 
-
 class AdminController extends BaseController {
     create = catchAsync( async (req, res)=> {
         const { phoneNumber, email, username, password } = req.body;
@@ -14,15 +13,12 @@ class AdminController extends BaseController {
         if(email){
             await this._isExist({ email }, "Email address");
         }
-        if( username ){
-            await this._isExist({username}, "Username");
-        }
         const hashedPassword = await crypto.decode(password);
         delete req.body?.pasword;
         const newAdmin = await Admin.create({
+            ...req.body,
             hashedPassword,
-            role: Roles.ADMIN,
-            ...req.body
+            role: Roles.ADMIN
         });
         return successRes(res, newAdmin, 201);
     })
@@ -41,12 +37,6 @@ class AdminController extends BaseController {
             const existsEmail = await Admin.findOne({email});
             if ( existsEmail && existsEmail.id != id ){
                 throw new ApiError('Email address already exists', 409);
-            }
-        }
-        if ( username ){
-            const existsUsername = await Admin.findOne({ username });
-            if ( existsUsername && existsUsername.id != id ){
-                throw new ApiError("Username already exists", 409);
             }
         }
         let hashedPassword = admin.hashedPassword;
