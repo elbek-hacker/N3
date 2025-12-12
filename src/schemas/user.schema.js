@@ -4,7 +4,7 @@ import { Genders, Roles } from "../enums/index.js";
 const userSchema = new Schema ({
     fullname: { type: String },
     phoneNumber: { type: String, required: true, unique: true},
-    email: { type: String, unique: true, required: true},
+    email: { type: String, unique: true},
     hashedPassword: { type: String, required: true },
     address: { type: String},
     image: { type: String},

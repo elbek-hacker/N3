@@ -5,7 +5,7 @@ class UserValidator {
     _phoneRegex = /^\+[1-9]\d{1,14}$/;
     _passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
 
-    create( data ) {
+    create=( data )=> {
         const user = Joi.object({
             fullname: Joi.string().optional(),
             phoneNumber: Joi.string().regex(this._phoneRegex).required(),
