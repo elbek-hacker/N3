@@ -9,6 +9,7 @@ const router = Router();
 router
     .post('/', validator(adminValid.create), controller.create)
     .post('/signin', validator(adminValid.signin), authController.signIn)
+    .post('/otp', validator(adminValid.confirmOTP), authController.confirmOTP)
     .post('/token', authController.getAccessToken)
     .post('/signout', authController.signOut)
     .get('/', controller.findAll)
@@ -16,5 +17,4 @@ router
     .patch('/:id', validator(adminValid.update), controller.update)
     .delete('/:id', controller.remove)
     
-
 export default router;

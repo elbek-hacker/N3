@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { envConfig } from '../config/index.js'
+
 class Token {
     getAccess(payload){
         const accessToken = jwt.sign(payload, envConfig.TOKEN.ACCESS_KEY, {
