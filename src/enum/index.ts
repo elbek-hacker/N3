@@ -1,0 +1,5 @@
+export enum Roles {
+  SUPERADMIN = 'SUPERADMIN',
+  LIBRARIAN = 'LIBRARIAN',
+  READER = 'READER',
+}
