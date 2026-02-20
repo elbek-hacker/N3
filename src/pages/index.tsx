@@ -7,4 +7,7 @@ import DashboardHome from "./Dashboard/Home";
 import Products from "./Dashboard/Products";
 import Users from "./Dashboard/Users";
 
-export { LoginHome, Login, Register, DashboardHome, Products, Category, Users}
+import NotFound from "./NotFound";
+
+
+export { LoginHome, Login, Register, DashboardHome, Products, Category, Users, NotFound }
