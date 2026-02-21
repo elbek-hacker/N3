@@ -5,8 +5,9 @@ import { PATH } from "../../components";
 const Home = () => {
   const navigate = useNavigate();
 
-  useEffect(()=> {
-    navigate(PATH.login)
+  useEffect(() => {
+    navigate(PATH.login);
+    console.log("Home pagedaman")
   }, []);
   return "";
 };

@@ -3,6 +3,7 @@ import { PATH } from "../components";
 import { Category, DashboardHome, NotFound, Products, Users } from "../pages";
 import { Sitebar, Header} from "../modules"
 const DashboardRoute = () => {
+    console.log("Dashboard pagedaman!")
     const routeList = [
         {id: 1, path: PATH.home, element: <DashboardHome/>},
         {id: 2, path: PATH.products, element: <Products/>},

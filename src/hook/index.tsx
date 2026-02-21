@@ -1,3 +1,3 @@
 import instance from "./instance";
 
-export default  instance ;
+export default instance ;

@@ -9,12 +9,7 @@ interface InputType {
 
 const Input: FC<InputType> = ({ type, placeholder, extraClass, name }) => {
   return (
-    <input
-      required
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      className={`w-full rounded-[10px] py-3.5 pr-4 pl-11.5 text-[0.92rem] text-[#f0e6d3] outline-none transition-all duration-300 placeholder-[#3a4050] ${extraClass}`}
+    <input required name={name} type={type} placeholder={placeholder} className={`w-full rounded-[10px] py-3.5 pr-4 pl-11.5 text-[0.92rem] text-[#f0e6d3] outline-none transition-all duration-300 placeholder-[#3a4050] ${extraClass}`}
       style={{
         background: "rgba(255,255,255,0.04)",
         border: "1px solid rgba(255,255,255,0.08)",

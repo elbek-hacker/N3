@@ -1,29 +1,31 @@
-import type { FC, ReactNode } from "react";
+import type { FC, MouseEventHandler, ReactNode } from "react";
 
 interface ButtonType {
-    children: ReactNode,
-    type:"button" | "submit",
-    extraClass?: string
+  children: ReactNode;
+  type: "button" | "submit";
+  extraClass?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  showBg?: boolean;
 }
 
-const Button:FC<ButtonType> = ({ type, extraClass, children }) => {
+const Button: FC<ButtonType> = ({ onClick, type, extraClass, children, showBg }) => {
   return (
     <button
+      style={
+        showBg
+          ? {}
+          : {
+              ["--darkBlue" as any]: "#071427",
+              ["--darkRed" as any]: "#FF2E51",
+              ["--darkOrange" as any]: "#FF6A00",
+            } as React.CSSProperties
+      }
+      onClick={onClick}
       type={type}
-      className={`${extraClass}btn-login relative w-full py-4 rounded-[10px] border-none text-white text-[0.88rem] tracking-[3px] uppercase font-medium cursor-pointer mt-8 overflow-hidden transition-all duration-200 hover:-translate-y-0.5`}
-      style={{
-        background:
-          "linear-gradient(135deg, #8b0000 0%, #c0392b 50%, #e67e22 100%)",
-      }}
-      onMouseEnter={(e) =>
-        ((e.currentTarget as HTMLButtonElement).style.boxShadow =
-          "0 12px 40px rgba(192,57,43,0.4)")
-      }
-      onMouseLeave={(e) =>
-        ((e.currentTarget as HTMLButtonElement).style.boxShadow = "none")
-      }
+      className={`${extraClass} group relative mt-2 w-full overflow-hidden rounded-2xl px-5 py-3.5 text-sm font-semibold text-white shadow-[0_18px_50px_-22px_rgba(0,0,0,0.9)] transition active:scale-[0.99] bg-[linear-gradient(135deg,var(--darkOrange),var(--darkRed))]`}
     >
-      <span className="relative z-10">{children}</span>
+      <span className="pointer-events-none absolute inset-y-0 left-[-40%] w-2/3 bg-[linear-gradient(to_right,transparent,rgba(255,255,255,0.22),transparent)] blur-sm opacity-0 transition duration-500 group-hover:translate-x-[170%] group-hover:opacity-100" />
+      {children}
     </button>
   );
 };

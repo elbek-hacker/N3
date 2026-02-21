@@ -6,6 +6,7 @@ import { Context } from "../../context/Context";
 
 const Login = () => {
   const [show, setShow] = useState<boolean>(false);
+  console.log("Login pagedaman!");
   
   const navigate = useNavigate();
   const {setToken} = useContext(Context);
